@@ -6,7 +6,9 @@ const { Meeting } = require('../../models');
  * @returns {Promise<Array<Object>>} The list of meetings.
  */
 async function getMeetings() {
-    const meetings = await Meeting.findAll();
+    const meetings = await Meeting.findAll({
+        order: [['startAt', 'ASC']]
+    });
     return meetings.map(meeting => meeting.get({ plain: true }));
 }
 
